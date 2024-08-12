@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripcion</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bodyy">
+    <nav class="navv">
+        <img src="images/LogoVillada.jpg" alt="">
+        <div class="navigation">
+        </div>
+    </nav>
+
+    <section id="contact">
+        <div class="form" id="form">
+            <form method="post" action="" class="inscrip-form">
+                <h4 class="tit">INSCRIPCIÓN</h4>
+                <div class="form-row">
+                    <input id="name_1" type="text" name="Nombre" placeholder="Nombre" required>
+                    <input id="name_2" type="text" name="Apellido" placeholder="Apellido" required>
+                </div>
+                <div class="form-row">
+                    <input id="document" type="text" name="Documento" placeholder="DNI" required>
+                    <input id="email" type="email" name="Gmail" placeholder="Email" required>
+                </div>
+                <div class="form-col">
+                    <input id="telefono" type="text" name="Telefono" placeholder="Telefono" required>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="curso" name="Curso" required class="form-input" id="curso">
+                            <option value="" disabled selected hidden>Curso</option>
+                            <option value="Blefaroplastia">Blefaroplastia</option>
+                            <option value="Mini lifting facial">Mini lifting facial</option>
+                            <option value="Lifting de cuello">Lifting de cuello </option>
+                            <option value="Mini Lipo">Mini Lipo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-roww">
+                    <div>
+                        <label id="inicio_label" class="date_class"></label>
+                    </div>
+                </div>         
+                <div class="form-coll">
+                    <button id="enviar" type="submit" value="Submit" onclick="redirigir(event)">Inscribirme</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        function redirigir(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+
+            var nombre = document.getElementById("name_1").value;
+            var apellido = document.getElementById("name_2").value;
+            var documento = document.getElementById("document").value;
+            var email = document.getElementById("email").value;
+            var telefono = document.getElementById("telefono").value;
+
+            var selectElement = document.getElementById("modalidad");
+            var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+
+            var selectElement1 = document.getElementById("curso");
+            var selectedOption1 = selectElement1.options[selectElement1.selectedIndex].text;
+
+            var selectElement2 = document.getElementById("comision");
+            var selectedOption2 = selectElement2.options[selectElement2.selectedIndex].text;
+
+            var selectElement3 = document.getElementById("pago");
+            var selectedOption3 = selectElement3.options[selectElement3.selectedIndex].text;
+
+            var formData = new FormData();
+            formData.append('entry.1474293252', nombre);
+            formData.append('entry.1981407260', apellido);
+            formData.append('entry.375575277', documento);
+            formData.append('entry.793677973', email);
+            formData.append('entry.1643615538', telefono);
+
+            formData.append('entry.1567699007', selectedOption);
+            formData.append('entry.2003128898', selectedOption1);
+            formData.append('entry.769523376', selectedOption2);
+            formData.append('entry.987233512', selectedOption3);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeuj3ACgTz1XnQ6B5rzjI3r49uXjWh_NOsePsQIFAOnopnkmA/formResponse");
+            xhr.send(formData);
+
+
+            // Obtener los elementos de los campos
+            var nombre1 = document.getElementById("name_1").value;
+            var nombre2 = document.getElementById("name_2").value;
+            var documento = document.getElementById("document").value;
+            var email = document.getElementById("email").value;
+            var telefono = document.getElementById("telefono").value;
+            var curso = document.getElementById("curso").value;
+
+            // Mostrar mensaje de éxito con SweetAlert2 y redirigir a WhatsApp
+            Swal.fire({
+                icon: 'success',
+                title: 'Inscripción exitosa',
+                html: 'Nombre: ' + nombre1 + '<br>' +
+                    'Apellido: ' + nombre2 + '<br>' +
+                    'DNI: ' + documento + '<br>' +
+                    'Gmail: ' + email + '<br>' +
+                    'Teléfono: ' + telefono + '<br>' +
+                    'Modalidad: ' + modalidad + '<br>' +
+                    'Curso: ' + curso + '<br>' +
+                    'Comisión: ' + comision + '<br>' +
+                    'Método de Pago: ' + metodoPago + '<br><br>' +
+                    'Para finalizar la inscripción, debes ponerte en contacto mediante WhatsApp para poder confirmar la misma',
+                showCancelButton: false,
+                confirmButtonText: 'WhatsApp',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Construir el mensaje de WhatsApp
+                    var mensajeWhatsApp = encodeURIComponent(
+                        'Hola! adjunto los datos de la inscripcion!' + '\n' +
+                        'Nombre: ' + nombre1 + '\n' +
+                        'Apellido: ' + nombre2 + '\n' +
+                        'DNI: ' + documento + '\n' +
+                        'Gmail: ' + email + '\n' +
+                        'Teléfono: ' + telefono + '\n' +
+                        'Curso: ' + curso + '\n'
+                    );
+                    // Redirigir a WhatsApp
+                    window.location.href = 'https://api.whatsapp.com/send?phone=543515131746&text=' + mensajeWhatsApp;
+                }
+            });
+        }
+
+        document.getElementById("pago").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var nombre = document.getElementById("name_1").value;
+        var apellido = document.getElementById("name_2").value;
+        var documento = document.getElementById("document").value;
+        var email = document.getElementById("email").value;
+
+        var selectElement = document.getElementById("modalidad");
+        var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+
+        var selectElement1 = document.getElementById("curso");
+        var selectedOption1 = selectElement1.options[selectElement1.selectedIndex].text;
+
+        var formData = new FormData();
+        formData.append('entry.1474293252', nombre);
+        formData.append('entry.1981407260', apellido);
+        formData.append('entry.375575277', documento);
+        formData.append('entry.793677973', email);
+
+        formData.append('entry.1643615538', selectedOption);
+        formData.append('entry.1567699007', selectedOption1);
+        formData.append('entry.2003128898', selectedOption2);
+        formData.append('entry.769523376', selectedOption3);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeuj3ACgTz1XnQ6B5rzjI3r49uXjWh_NOsePsQIFAOnopnkmA/formResponse");
+        xhr.send(formData);
+        alert("Datos del Alumno registrados");
+    });
+    </script>
+</body>
+
+</html>

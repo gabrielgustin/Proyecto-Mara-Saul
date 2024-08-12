@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mara Saul</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+</head>
+
+<body>
+    <nav>
+        <img onclick="window.location.href='index.html'" src="images/MaraSaul.png" alt="">
+        <div class="navigation">
+            <ul>
+                <li id="menu-close" class="fas fa-times"></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="course.html">Cursos</a></li>      
+                <li><a href="contact.html" class="active">Contacto</a></li>
+                <li><a href="https://bit.ly/4bI1iaN" target="_blank">WhatsApp</a></li>
+            </ul>
+            <i id="menu-btn" class="fas fa-bars fa-2x" style="color: white; margin-bottom: 10px;"></i>
+        </div>
+    </nav>
+    <section id="about-home">
+        <h2>¡Contáctanos!</h2>
+    </section>
+
+    <section id="contact">
+        <div class="getin">
+            <h2></h2>
+
+            <div class="getin-details">
+                <h3>Teléfono</h3>
+                <div>
+                    <i class="fas fa-phone-alt get"></i>
+                    <p>(+54) 9 3517599592</p>
+                </div>
+                <h3>Correo</h3>
+                <div>
+                    <i class="fal fa-envelope-open-text get"></i>
+                    <p>maramilagros@hotmail.com</p>
+                </div>
+                <h3>Redes Sociales</h3>
+                <div class="pro-link">
+                    <a href="https://www.instagram.com/esteticamarasaul?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/esteticamedicamarasaul/?_rdr" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form" id="form">
+            <form id="info" method="post" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSe8ZVdKRTwIOAS4ylJoFHoyLIyPvzIoVli0DaRSL8-A9dqO9w/formResponse" class="contact-form">
+                <h4>Ponte en contacto</h4>
+                <div class="form-row">
+                    <input id="nombre" name="entry.1474293252" type="text" placeholder="Nombre" required>
+                    <input id="email" name="entry.1643615538" type="email" placeholder="Email" required>
+                </div>
+                <div class="form-col">
+                    <div class="select-wrapper">
+                        <select id="curso" name="Curso" required class="form-input" id="curso">
+                            <option value="" disabled selected hidden>Curso</option>
+                            <option value="Blefaroplastia">Blefaroplastia</option>
+                            <option value="Mini lifting facial">Mini lifting facial</option>
+                            <option value="Lifting de cuello">Lifting de cuello </option>
+                            <option value="Mini Lipo">Mini Lipo</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" id="cursoSeleccionadoHidden" name="entry.2003128898">
+                <div class="form-col">
+                    <textarea id="mensaje" name="entry.769523376" maxlength="200" rows="4" required
+                        placeholder="Hola, quisiera consultar por..."></textarea>
+                </div>
+                <div class="form-col">
+                    <button id="enviar" type="submit" value="Submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-col">
+            <h3>Buscar</h3>
+            <li>Inicio</li>
+            <li>Cursos</li>
+            <li>Contacto</li>
+        </div>
+        <div class="footer-col">
+            <h3>Suscríbete</h3>
+            <p>¡Recibirás correos con novedades!</p>
+            <form id="miFormulario" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScK7ERhvRTqDRTySU1lrpmOwKM3TN-M1y0uDJ-4TXrFuawoqg/formResponse" method="Post">
+                <input type="email" name="entry.2136656804" value="" placeholder="Dirección de correo">
+                <button class="yellow" style="border: 0;" id="enviar" type="submit">Ir</button>
+            </form>
+        </div>
+        <div class="copyright">
+            <div class="pro-link">
+                <a href="https://www.instagram.com/esteticamarasaul?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/esteticamedicamarasaul/?_rdr" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    document.getElementById("info").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var nombre = document.getElementById("nombre").value;
+        var email = document.getElementById("email").value;
+        var mensaje = document.getElementById("mensaje").value;
+        var selectElement = document.getElementById("curso");
+        var selectedOption = selectElement.options[selectElement.selectedIndex].text;
+        var formData = new FormData();
+        formData.append('entry.1474293252', nombre);
+        formData.append('entry.1643615538', email
+        );
+        formData.append('entry.769523376', mensaje);
+        formData.append('entry.2003128898', selectedOption);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe8ZVdKRTwIOAS4ylJoFHoyLIyPvzIoVli0DaRSL8-A9dqO9w/formResponse");
+        xhr.send(formData);
+        alert("Datos de contacto registrados");
+    });
+</script>
+<script src="index.js"></script>
+</body>
+</html>
